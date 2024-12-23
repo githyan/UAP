@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine learning model</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 text-white flex flex-col h-screen p-6">
+        <!-- Logo -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-center">AI Demo</h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="space-y-4">
+            <a href="/home" class="block px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 transition">
+                <span class="text-lg">🏠 Home</span>
+            </a>
+            <a href="" class="block px-4 py-2 rounded hover:bg-gray-700 transition">
+                <span class="text-lg">📂 Upload</span>
+            </a>
+            <a href="/summary" class="block px-4 py-2 rounded hover:bg-gray-700 transition">
+                <span class="text-lg">📊 Results</span>
+            </a>
+            <a href="/settings" class="block px-4 py-2 rounded hover:bg-gray-700 transition">
+                <span class="text-lg">⚙️ Settings</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <div class="mt-auto text-center">
+            <p class="text-gray-400 text-sm">© 2024 AI Demo</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="m-0 flex-1 p-8">
+        <div class="bg-white shadow-md rounded-lg p-8 max-w-lg mx-auto">
+            <h1 class="text-2xl font-bold mb-4 text-center">Upload Image & Get Model Accuracy</h1>
+            <form id="uploadForm" class="space-y-4" action="/home" method="POST" enctype="multipart/form-data">
+                <!-- File Input -->
+                <div>
+                    <label for="image" class="block text-gray-700 font-medium">Select an image:</label>
+                    <input type="file" id="image" name="image" accept="image/*"
+                        class="mt-2 block w-full text-gray-700 border border-gray-300 rounded p-2"
+                        onchange="previewImage(event)">
+                </div>
+
+                <!-- Image Preview -->
+                <div id="previewContainer" class="hidden">
+                    <p class="text-gray-700 font-medium">Preview:</p>
+                    <img id="preview" class="mt-2 rounded-lg shadow-md max-h-64" alt="Image preview">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+                    id="submitButton">
+                    Upload & Predict
+                </button>
+            </form>
+
+            <!-- Progress Bar -->
+            <div id="progressContainer" class="hidden mt-4">
+                <p class="text-gray-700 font-medium">Processing...</p>
+                <div class="w-full bg-gray-300 rounded-full h-4 mt-2">
+                    <div id="progressBar" class="bg-blue-500 h-4 rounded-full" style="width: 0%"></div>
+                </div>
+                <p id="accuracyLabel" class="mt-2 text-gray-700">Accuracy: 0%</p>
+            </div>
+        </div>
+        {% if predict_result %}
+        <p class="text-center"> Image is a {{predict_result}}</p>
+        {% endif %}
+
+    </main>
+    <script src="/static/src/app.js"></script>
+</body>
+
+</html>

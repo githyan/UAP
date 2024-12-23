@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Model Summary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex h-screen">
+    <aside id="sidebar" class="bg-gray-800 text-white hidden md:block w-64 flex flex-col p-6">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold">AI Demo</h1>
+        </div>
+
+        <nav class="space-y-4">
+            <a href="/home" class="block px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 transition">
+                <span class="text-lg">🏠 Home</span>
+            </a>
+            <a href="#" class="block px-4 py-2 rounded hover:bg-gray-700 transition">
+                <span class="text-lg">📂 Upload</span>
+            </a>
+            <a href="/summary" class="block px-4 py-2 rounded hover:bg-gray-700 transition">
+                <span class="text-lg">📊 Results</span>
+            </a>
+            <a href="/settings" class="block px-4 py-2 rounded hover:bg-gray-700 transition">
+                <span class="text-lg">⚙️ Settings</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div id="main" class="flex-1 flex flex-col p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="text-2xl font-bold">Model Summary</h1>
+            <button id="toggleSidebar" class="md:hidden text-gray-500 hover:text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-4xl mb-8">
+            <div class="bg-white shadow-md rounded-lg p-2">
+                <pre
+                    class="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto text-sm max-h-[600px] overflow-y-auto">
+                    {{ model_summary }}
+                                </pre>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="text-blue-500 hover:underline">Back to Home</a>
+        </div>
+    </div>
+</body>
+
+</html>
